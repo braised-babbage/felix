@@ -8,6 +8,9 @@ lazy val root = project
 
     scalaVersion := scala3Version,
 
-    libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.10" % "test",
+    libraryDependencies ++= Seq(
+      "com.lihaoyi" %% "scalatags" % "0.11.0",
+      "com.lihaoyi" %% "utest" % "0.7.10" % "test",
+    ),
     testFrameworks += new TestFramework("utest.runner.Framework")
   )

@@ -39,7 +39,7 @@ class Group(gens: Map[Char, MobiusTransformation]):
                 do recurse(depth-1, prefix+c, elt*m)
             }
         
-        recurse(depth, initial, this(initial))
+        recurse(depth, initial, MobiusTransformation.identity)
 
 object Group:
     def apply(gens: (Char, MobiusTransformation)*): Group =
