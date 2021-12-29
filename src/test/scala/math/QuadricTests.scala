@@ -15,6 +15,15 @@ object QuadricTests extends TestSuite {
             }
         )
       }
+      test("recover circle (real)") {
+          val circle = Circle(0.5, 0.25)
+          assert(
+              circle.matrix.quadric match {
+                  case Some(c @ Circle(_,_)) => circle ~= c
+                  case _ => false
+              }
+          )
+      }
       test("recover line") {
           assert(
               line.matrix.quadric match {

@@ -44,6 +44,19 @@ object MobiusTransformationTests extends TestSuite {
         )
     }
 
+    test("circle (real center) by affine map"){
+        val s = 0.25
+        val t = 0.75
+        val map = MobiusTransformation(s+t, -2*s*t, -2, s+t)
+        val circle = Circle(0.5, 0.25)
+        assert(
+            map(circle) match {
+                case circle2 @ Circle(_,_) => circle2 ~= Circle(-0.5, 0.25)
+                case _ => false
+            }
+        )
+    }
+
     test("line by affine map"){
         val line = Line(scala.math.Pi/4, 1)
         // this has pts: sqrt(1/2)+sqrt(1/2)i  which map to  sqrt(2)+(sqrt(2)+1)i
@@ -56,6 +69,12 @@ object MobiusTransformationTests extends TestSuite {
                 case _ => false
             }
         )
+    }
+
+    test("inverse"){
+        val m = MobiusTransformation(1,1,0,1)
+        assert(m.inv * m == MobiusTransformation.identity)
+        assert(m * m.inv == MobiusTransformation.identity)
     }
   }
 }

@@ -41,6 +41,9 @@ final case class HermitianMatrix(
         else Some(
             if (d ~= 0)
             then Line(bic.argument, a / (2 * bic.norm))
-            else Circle(bic / d, scala.math.sqrt(bic.norm2 / d - a))
+            else {
+                val center = bic / d
+                Circle(center, scala.math.sqrt(center.norm2 - a/d))
+            }
         )
 

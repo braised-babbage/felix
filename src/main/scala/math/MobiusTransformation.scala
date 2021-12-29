@@ -37,7 +37,7 @@ final case class MobiusTransformation(
         )
     
     def inv: MobiusTransformation = 
-        MobiusTransformation(d, -c, -b, a) scale  (1/ det)
+        MobiusTransformation(d, -b, -c, a) scale  (1/ det)
 
     def dagger: MobiusTransformation =
         MobiusTransformation(a.conj, c.conj, b.conj, d.conj)
@@ -47,3 +47,7 @@ final case class MobiusTransformation(
 
     override def toString: String =
         s"[[${a}, ${b}], [${c}, ${d}]]"
+
+object MobiusTransformation:
+    def identity: MobiusTransformation = 
+        MobiusTransformation(1, 0, 0, 1)
